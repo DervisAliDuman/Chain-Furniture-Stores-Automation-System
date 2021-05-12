@@ -1,0 +1,381 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "DADCompanyPackage.HybridList"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1583471389 { 
+   	label=KWLinkedList
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Node481199553[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Node&lt;E&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   data: E [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   next: Node&lt;E&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   prev: Node&lt;E&gt; [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_365251664 { 
+   	label=DADCompanyPackage
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Admin365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Admin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   company: Company [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add_branch(products: HybridList&lt;Product_interface&gt;, product_count: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add_branch_employee_to_branch(branch_index: int, name: String, surname: String, email: String, password: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add_product_by_name_model_and_color_to_branch(branch_index: int, product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ branch_item_list(): String</TD></TR>
+<TR><TD ALIGN="LEFT" ># decrease_count()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_branch_byindex(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_branch_employee_by_branch_index(branch_index: int, index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_product_by_name(product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_product_by_name_model_and_color(product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" ># increase_count()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ list_of_branch_employees(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ list_of_branches(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_listof_products(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_listof_products_that_needed(): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Branch365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Branch</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   branch_employee_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   branch_employees: KWArrayList&lt;Branch_Employee&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   product_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   products: HybridList&lt;Product_interface&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add_branch_employee(b: Branch_Employee)</TD></TR>
+<TR><TD ALIGN="LEFT" ># decrease_count()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_branch_employee(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ find_product_by_name(product_name: String): Product_interface</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get_branch_employee(index: int): Branch_Employee</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get_product(index: int): Product_interface</TD></TR>
+<TR><TD ALIGN="LEFT" ># increase_count()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Branch_Employee365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Branch_Employee</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   branch_id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   company: Company [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ delete_product_by_name_model_and_color(product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_listof_customers(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_listof_products(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sell_product_by_name_model_and_color(product_name: String, model_number: int, color_number: int, customer_index: int): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Company365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Company</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   admin_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   admins: KWArrayList&lt;Admin&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   branch_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   branches: KWLinkedList&lt;Branch_interface&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customers: KWArrayList&lt;Customer&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add_branch(b: Branch_interface)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add_branch_employee_bybranch_index(branch_index: int, b: Branch_Employee)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add_customer(c: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add_product_by_name_to_branch(branch_index: int, product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ branch_item_list(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ buy_product_by_name(product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_branch_byindex(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ delete_branch_employee_byindex(branch_index: int, index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get_admin(index: int): Admin</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get_branch(index: int): Branch_interface</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get_customer(index: int): Customer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ increase_company_admin_count()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ list_of_branch_employees(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ list_of_branches(): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Customer365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Customer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   address: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   bought_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   company: Company [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   purcase_history: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   subscribed: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tel_num: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add_purchase_history_to_string(product_name: String, model_number: int, color_number: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ buy_product_by_name_model_and_color(product_name: String, model_number: int, color_number: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" ># decrease_count()</TD></TR>
+<TR><TD ALIGN="LEFT" ># increase_count()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_listof_products(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ see_purchase_history(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ singin()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ subscribe(address: String, tel_num: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Human365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Human</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   surname: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(rv: Human): int</TD></TR>
+<TR><TD ALIGN="LEFT" ># decrease_count()</TD></TR>
+<TR><TD ALIGN="LEFT" ># increase_count()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+HybridList365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HybridList&lt;E&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Listcount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   list: KWLinkedList&lt;KWArrayList&lt;E&gt;&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   size: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(e: E): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ contains(o: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ indexOf(o: Object): long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeLast(): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ set(index: int, e: E): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): long</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KWArrayList365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KWArrayList&lt;E&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   capacity: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   size: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   theData: E[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(anEntry: E): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ add(index: int, anEntry: E)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ indexOf(o: Object): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- reallocate()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ set(index: int, newValue: E): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KWLinkedList365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KWLinkedList&lt;E&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   head: Node&lt;E&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   size: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tail: Node&lt;E&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(index: int, obj: E)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addFirst(obj: E)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addLast(obj: E)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ iterator(): Iterator</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listIterator(): ListIterator</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listIterator(index: int): ListIterator</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listIterator(iter: ListIterator): ListIterator</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(index: int): E</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Product365251664[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Product</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   color_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   models: HybridList&lt;Model&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   product_count: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   product_name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ get_model(index: int): Model</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Admin365251664 -> Company365251664[label="company
+[0..1]"];
+Branch365251664 -> Branch_Employee365251664[label="branch_employees
+[0..1]"];
+Branch365251664 -> HybridList365251664[label="products
+[0..1]"];
+Branch365251664 -> Product365251664[label="products
+[0..1]"];
+Branch_Employee365251664 -> Company365251664[label="company
+[0..1]"];
+Company365251664 -> Admin365251664[label="admins
+[0..1]"];
+Company365251664 -> Branch365251664[label="branches
+[0..1]"];
+Company365251664 -> Customer365251664[label="customers
+[0..1]"];
+Customer365251664 -> Company365251664[label="company
+[0..1]"];
+Human365251664 -> Admin365251664[arrowhead=none, arrowtail=empty, dir=both];
+Human365251664 -> Branch_Employee365251664[arrowhead=none, arrowtail=empty, dir=both];
+Human365251664 -> Customer365251664[arrowhead=none, arrowtail=empty, dir=both];
+HybridList365251664 -> KWArrayList365251664[label="list
+[0..1]"];
+HybridList365251664 -> KWLinkedList365251664[label="list
+[0..1]"];
+KWLinkedList365251664 -> Node481199553[label="head
+[0..1]"];
+KWLinkedList365251664 -> Node481199553[label="tail
+[0..1]"];
+Product365251664 -> HybridList365251664[label="models
+[0..1]"];
+    
+}
+@enduml
